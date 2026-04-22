@@ -68,12 +68,14 @@ function getExpiryStatus(expiryDate?: string) {
 }
 
 export default function InventoryScreen() {
-  const { items, removeItem, consumeItem } = useInventory();
+  const { items, removeItem, consumeItem, clearInventory } = useInventory();
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
   const [consumeQuantity, setConsumeQuantity] = useState(1);
   const [sortBy, setSortBy] = useState<'default' | 'expiry'>('default');
   const [selectedCategory, setSelectedCategory] = useState('All Items');
   const [selectedRarity, setSelectedRarity] = useState('all');
+  const [showClearDialog, setShowClearDialog] = useState(false);
+  const [password, setPassword] = useState('');
 
   // Filter items by category and rarity
   const filteredItems = items.filter(item => 
@@ -312,6 +314,15 @@ export default function InventoryScreen() {
               </div>
             )}
 
+            {/* Clear Inventory Button */}
+            {items.length > 0 && (
+              <div className="absolute bottom-12 right-4 z-[1000]">
+                <Button variant="destructive" onClick={() => setShowClearDialog(true)}>
+                  Clear Inventory
+                </Button>
+              </div>
+            )}
+
             {/* Item Action Dialog */}
             <Dialog open={!!selectedItem} onOpenChange={(open) => !open && setSelectedItem(null)}>
               <DialogContent className="bg-gradient-to-br from-slate-800 to-slate-900 border-white/20 text-white">
@@ -399,6 +410,46 @@ export default function InventoryScreen() {
                   >
                     <Trash2 className="size-4 mr-2" />
                     Delete
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Clear Inventory Dialog */}
+            <Dialog open={showClearDialog} onOpenChange={setShowClearDialog}>
+              <DialogContent className="bg-gradient-to-br from-slate-800 to-slate-900 border-white/20 text-white">
+                <DialogHeader>
+                  <DialogTitle>Clear Inventory</DialogTitle>
+                  <DialogDescription>
+                    This will permanently delete all items. Enter password to confirm.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="py-4">
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded text-white placeholder-gray-400"
+                    placeholder="Enter password"
+                  />
+                </div>
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => { setShowClearDialog(false); setPassword(''); }}>
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => {
+                      if (password === 'foobar') {
+                        clearInventory();
+                        setShowClearDialog(false);
+                        setPassword('');
+                      } else {
+                        alert('Incorrect password');
+                      }
+                    }}
+                  >
+                    Clear
                   </Button>
                 </DialogFooter>
               </DialogContent>

@@ -16,6 +16,7 @@ interface InventoryContextType {
   removeItem: (id: string) => void;
   updateItem: (id: string, updates: Partial<InventoryItem>) => void;
   consumeItem: (id: string, quantity?: number) => void;
+  clearInventory: () => void;
 }
 
 const InventoryContext = createContext<InventoryContextType | undefined>(undefined);
@@ -63,8 +64,12 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const clearInventory = () => {
+    setItems([]);
+  };
+
   return (
-    <InventoryContext.Provider value={{ items, addItem, removeItem, updateItem, consumeItem }}>
+    <InventoryContext.Provider value={{ items, addItem, removeItem, updateItem, consumeItem, clearInventory }}>
       {children}
     </InventoryContext.Provider>
   );
