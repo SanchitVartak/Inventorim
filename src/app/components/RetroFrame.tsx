@@ -23,8 +23,8 @@ export default function RetroFrame({ children }: { children: React.ReactNode }) 
             {/* Light wood accent border */}
             <div className="relative bg-amber-600 p-1">
               {/* Content area with background image and overlay */}
-              <div className="relative min-h-[600px] overflow-auto bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bkgImage})` }}>
-                <div className="absolute inset-0 bg-black/40"></div>
+              <div className="relative min-h-[600px] overflow-visible bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bkgImage})` }}>
+                <div className="absolute inset-0 bg-black/50"></div>
                 <div className="relative z-10">
                   {children}
                 </div>

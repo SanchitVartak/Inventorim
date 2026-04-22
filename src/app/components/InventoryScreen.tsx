@@ -115,7 +115,7 @@ export default function InventoryScreen() {
         {/* Main Content with Sidebar */}
         <div className="flex gap-4">
           {/* Sidebar */}
-          <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-lg p-3 flex flex-col gap-3">
+          <div className="bg-black/50 border border-white/10 rounded-lg p-3 flex flex-col gap-3">
             {categories.map(category => {
               const Icon = category.icon;
               const itemCount = category.name === 'All Items' 
@@ -155,7 +155,7 @@ export default function InventoryScreen() {
           {/* Right Content Area */}
           <div className="flex-1">
             {/* Stats Bar */}
-            <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-lg p-4 mb-4">
+            <div className="bg-black/50 border border-white/10 rounded-lg p-4 mb-4">
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-2xl font-bold text-white">{filteredItems.length}</div>
