@@ -226,7 +226,7 @@ export default function InventoryScreen() {
             )}
 
             {/* Inventory Grid */}
-            {sortedItems.length === 0 ? (
+            {items.length === 0 ? (
               <div className="text-center py-16">
                 <div className="mb-4 flex justify-center">
                   <Package className="size-24 text-white" />
@@ -238,6 +238,11 @@ export default function InventoryScreen() {
                     Add Your First Item
                   </Button>
                 </Link>
+              </div>
+            ) : sortedItems.length === 0 ? (
+              <div className="text-center py-16">
+                <h2 className="text-2xl font-bold text-white mb-2">No items of selected types</h2>
+                <p className="text-gray-400">Try adjusting your filters to see more items.</p>
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
