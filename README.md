@@ -1,7 +1,10 @@
 
-  # Inventorim App
+  # Inventorim
 
-  This is a code bundle for Inventorim App. The original project is available at https://www.figma.com/design/GRXHuAuJtA6ESmowr5l6gV/Inventorim-App.
+  Gamified Home Inventory Manager App
+  
+  Prototype:
+  https://www.figma.com/design/GRXHuAuJtA6ESmowr5l6gV/Inventorim-App.
 
   ## Running the code
 
