@@ -6,7 +6,7 @@ import {
   Wine, Cookie, Fish, Croissant, Pizza, IceCreamCone, Cake, CupSoda,
   Citrus, Cherry, Grape, Banana, Package
 } from 'lucide-react';
-import { useInventory } from '../context/InventoryContext';
+import { useInventory, InventoryItem } from '../context/InventoryContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -84,11 +84,11 @@ const rarityTextColors = {
 
 export default function AddItemScreen() {
   const { addItem } = useInventory();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Omit<InventoryItem, 'id'>>({
     name: '',
     category: 'Fruits & Vegetables',
     quantity: 1,
-    rarity: 'common' as const,
+    rarity: 'common',
     icon: 'Apple',
     expiryDate: '',
   });
