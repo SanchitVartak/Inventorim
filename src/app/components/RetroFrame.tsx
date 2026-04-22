@@ -1,3 +1,5 @@
+import bkgImage from '../../images/bkg.png';
+
 export default function RetroFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-800 to-gray-900 flex items-center justify-center p-4">
@@ -20,9 +22,12 @@ export default function RetroFrame({ children }: { children: React.ReactNode }) 
             
             {/* Light wood accent border */}
             <div className="relative bg-amber-600 p-1">
-              {/* Content area with wooden background */}
-              <div className="relative bg-gradient-to-br from-amber-900 via-amber-950 to-stone-900 min-h-[600px] overflow-auto">
-                {children}
+              {/* Content area with background image and overlay */}
+              <div className="relative min-h-[600px] overflow-auto bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bkgImage})` }}>
+                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="relative z-10">
+                  {children}
+                </div>
               </div>
             </div>
           </div>
